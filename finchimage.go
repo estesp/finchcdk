@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -37,7 +36,7 @@ func FinchContainerStack(scope constructs.Construct, id string, props *FinchCont
 		},
 	})
 
-	fmt.Printf("Built image: %s\n", *asset.ImageUri())
+	awscdk.NewCfnOutput(stack, jsii.String("Image built"), &awscdk.CfnOutputProps{Value: asset.ImageUri()})
 
 	// Create VPC and Cluster
 	vpc := awsec2.NewVpc(stack, jsii.String("ALBFargoVpc"), &awsec2.VpcProps{
